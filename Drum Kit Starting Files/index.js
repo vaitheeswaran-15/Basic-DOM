@@ -5,12 +5,14 @@ for (var i = 0; i < buttonLength; i++)
     document.querySelectorAll('.drum')[i].addEventListener('click', function(){
       var value = this.innerHTML;
       playAudio(value);
+      animation(value);
     })
 }
 
 
 document.addEventListener('keydown',function(event){
   playAudio(event.key);
+  animation(event.key);
 })
 function playAudio(value){
   switch (value){
@@ -45,4 +47,10 @@ function playAudio(value){
     default:
         console.log(value);
   } 
+}
+
+function animation(value){
+  var selector = document.querySelector('.'+value);
+  selector.classList.add('pressed');
+  setTimeout(function(){selector.classList.remove('pressed')},100);
 }
